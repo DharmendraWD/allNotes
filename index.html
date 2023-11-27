@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple Notes !</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Grandstander:wght@200&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Delius&display=swap" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="alert alert-dark text-center alert-dismissible fade show" role="alert">
+        Some features may not work as you expected. They are still under <strong style="color: green;">WIP</strong> state.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="color: rgb(255, 255, 255);"></button>
+      </div>
+    <div class="mainContainerChildrenNav">
+        <h1>All Notes</h1>
+        <div id="optionsContainer">
+            <div class="option"> <img src="images/select.png" alt=""> Select Notes</div>
+            <div class="option"> <img src="images/gallary (1).png" alt=""> View As Gallary</div>
+            <div class="option"> <img src="images/sync.png" alt=""> Rigth to Left</div>
+            <div class="option"> <img src="images/setting.png" alt=""> Settings</div>
+    </div>
+        <div class="leftRight">
+<img src="images/back.png" alt="" title="Back">
+<input type="search" name="search" id="searchNotes" placeholder="Search Notes">
+<img src="images/more (2).png" alt="" id="more" title="More">
+
+</div>
+</div>
+<h1 class="secondHeading">Notes</h1>
+    <div class="mainContainer">    
+        <h3 class="emptyAlert"></h3>
+    </div>
+
+    <!-- Interface to add New Notes  -->
+</div>
+<div class="newNotes">
+    <input type="text" id="title" placeholder="Title Here">
+
+    <textarea name="" id="textBox" cols="30" rows="10" placeholder="Explanation Here ..."></textarea>
+<h3 class="alert alertTop">Notes added Successfullly!</h3>
+</div>
+
+<div class="settingsParentDiv displayNone">
+    <h2 style="text-align: center;" id="themeHeadiunf">Themes & More</h2>
+
+<!-- Themeses Section  -->
+<div class="themesSetMessage messageContainer displayNone">
+    <p>Theme set Successfully...</p>
+</div>
+<details class="detainses">
+  <summary>Themes Collection</summary>    
+  <div class="themesParen">
+   <div class="themes">
+    <img src="images/1.jpg" alt=""> 
+    <button>Applied</button>
+  </div>
+
+   <div class="themes">
+    <img src="images/1.jpg" alt=""> 
+    <button>Apply</button>
+  </div>
+
+   <div class="themes">
+    <img src="images/1.jpg" alt=""> 
+    <button>Apply</button>
+  </div>
+</div>
+</details>
+<!-- Themes section ended  -->
+<div class="settingOptionsBellowThemes">
+
+    <div class="imageAndBtn">
+        <img src="images/downloading.png" alt="">
+         <button>Download Notes As PDF</button>
+        </div>
+        
+    <div class="imageAndBtn">
+        <img src="images/font.png" alt="">
+         <button>Change Notes Font</button>
+        </div>
+
+        <div class="imageAndBtn">
+            <img src="images/select.png" alt="">
+             <button>Any thing</button>
+            </div>
+
+<div class="setParaColor">
+    <img src="images/colour.png" alt=""> 
+      <details class="detainses">
+     <summary>Paragraph Color</summary>    
+        <input type="color" name="" id="">
+      </details>
+
+</div>
+      <div class="imageAndBtn">
+              <img src="images/lock.png" alt="">
+               <button>Set Notes Password</button>
+              </div>
+
+<div class="deleteConfirm">
+    <h4>Are you sure to delete All notes?</h4>
+    <div class="delBtn">
+        <button id="dele">Yes</button>
+        <button id="notDele">No</button>
+    </div>
+</div>
+
+      <div class="imageAndBtn Default">
+        <img src="images/work-in-progress.png" alt="">
+         <button>Reset as Default</button>
+        </div>
+      <div class="imageAndBtn deleteAllNotes">
+        <img src="images/bin.png" alt="">
+         <button>Delete All Notes</button>
+        </div>
+
+</div>
+</div>
+
+
+    <input type="button" value="Let's Write" id="newBtn">
+<script src="script2.js" defer></script>
+<script src="script.js" defer></script>
+<!-- Bootstrap Js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

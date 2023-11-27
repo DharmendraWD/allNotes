@@ -1,0 +1,453 @@
+
+body{
+    color: white;
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    /* overflow: hidden; */
+    background-color: rgba(36, 31, 31, 0.644);
+    width: 100%;
+    height: 100vh;
+    background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('images/1.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: ubuntu;
+}
+::-webkit-scrollbar{
+    display: none;
+    }
+*{
+    user-select: none;
+    color: white;
+    text-decoration: none;
+    list-style: none;
+}
+.mainContainer{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    background-size:cover;
+    background-position: center;
+    background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/writing-923882_1280.jpg');
+    background-position: bottom;
+    background-size:cover;
+    margin:0 auto;
+    height: 70vh;
+    overflow: scroll;
+}
+.mainContainerChildren{
+    margin: 1px 0px;
+    border-bottom: 1px solid #3a432a82;
+    position: relative;
+    height: 80px;
+    width: 100%;
+    cursor: pointer;
+    z-index: 9999;
+}
+.mainContainerChildrenNav{
+    margin: 7px;
+    background-color:rgb(0 0 0 / 15%);
+    position: relative;
+    height: 100px;
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+.mainContainerChildrenNav h1{
+text-align: center;
+font-family: Grandstander;
+font-size: 21px;
+}
+.mainContainerChildren p{
+    pointer-events: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family:Annie Use Your Telescope;
+    font-size: 20px;
+}
+.h1, h1 {
+    font-size: calc(1rem + 1vw) !important;
+}
+.secondHeading{
+    text-align: center;
+    color: rgb(194, 139, 139);
+    background-color:#3b03031f;
+    width: 80%;
+    margin: 0 auto 0px auto;
+    font-family: Grandstander;
+}
+.mainContainerChildren .timeDates{
+    position: absolute;
+    bottom: 0;
+    pointer-events: none;
+    right: 0;
+    font-size: 12px;
+    box-shadow: -1px -2px 10px -7px white;
+    background: transparent;
+    color: #5f5c5c;
+}
+#searchNotes{
+    background: transparent;
+    border: 1px solid;
+    border-radius: 15px;
+    height: 20px;
+    text-align: center;
+    width: 20%;
+}
+.mainContainerChildren h1{
+    z-index: 0;
+    pointer-events: none;
+    margin: 9px auto 0 auto;
+    padding: 0;
+    text-align: center;
+    font-family: Delius;
+}
+.leftRight{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 16px;
+}
+.leftRight img{
+  width: 30px;
+  cursor: pointer;
+
+}
+
+#newBtn{
+    cursor: pointer;
+    width: 90px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    background: transparent;
+    border: none;
+    background: #59595996;
+    border-radius: 8px;
+    box-shadow: 0px 0px 8px 0px;
+    margin: 12px 0 15px 0;
+    font-size: 16px;
+    transition: .2s ease-in-out;
+}
+#newBtn:hover{
+    background: #33323296;
+    box-shadow: 0px 0px 4px 0px;
+}
+.newNotes{
+ flex-direction: column;
+ margin: 9px 0;
+display: none;
+width: 80%;
+margin: 0 auto;
+position: absolute;
+top: 141px;
+left: 50%;
+transform: translateX(-50%);
+}
+.newNotes #title{
+    margin: 0 0 0px 0;
+    font-size: 24px;
+    color: white;
+    background: #42424238;
+    text-align: center;
+    outline: none;
+    border: none;
+    border-radius: 15px;
+}
+.newNotes #textBox{
+ margin:0 0 4px 0;
+ background-color:rgba(255, 255, 255, 0.486);
+ font-size: 26px;
+ height: 60vh;
+ background: transparent;
+ border: 1px solid #979797;
+ margin: 12px 0 0 0;
+ text-align: center;
+ border-radius: 15px;
+ 
+}
+#more{
+    /* position: absolute; */
+    right: 0;
+}
+/* OPTION OF RIGHT SIDE  */
+#optionsContainer {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: absolute;
+    right: 0px;
+    top: 82px;
+}
+.option {
+    flex: 1;
+    padding: 10px;
+    transform: translateX(100%);
+    transition: transform 0.3s;
+    box-shadow: 3px 2px 3px 0px white;
+    color: #7b7b78;
+    padding: 8px 0 8px 0;
+cursor: pointer;
+display: flex;
+}
+.option:hover{
+    box-shadow: 3px 2px 6px 0px #505118;
+    color: #bdbdbd;
+}
+.optionToggle{
+    transform: translateX(0%);
+    z-index: 999999999999999999999;
+}
+.rotate45Deg{
+    transform: rotate(45deg);
+}
+.op17per{
+    opacity: 17% !important;
+}
+.deleteNotes{
+    width: 30px;
+    position: absolute;
+    top: 15px;
+    right: 12%;
+}
+.alertTop{
+    position: absolute;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: green;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: .4s ease-in-out;
+}
+.emptyAlert{
+    text-align: center;
+    color: grey;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-family: Grandstander;
+    transform: translateX(-50%)
+}
+#optionsContainer div img{
+    width: 29px;   
+     padding: 0 5px 0 0;
+}
+.toggleGrid{
+    display: grid;
+    grid-auto-flow: dense;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+.columnRevserse{
+    flex-direction: column-reverse;
+    direction: rtl;
+}
+/* Setttings Style  */
+.themes{
+    margin: 0 5px 0 5px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+.themes img{
+    width: 100%;
+    transition: transform 0.4s ease;
+}
+.themes img:hover{
+transform: scale(1.2);
+}
+.themes button{
+text-align: center;
+cursor: pointer;
+}
+.themes button {
+    margin: 0 auto;
+    display: block;
+}
+.themesParen{
+     display: flex;
+}
+.themes button {
+    margin: 0 auto;
+    display: block;
+    background: transparent;
+    color: white;
+    border: 1px splid;
+    border: 1px solid;
+    padding: 2px 21px;
+    border-radius: 14px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 17px;
+    transition: .3s ease-in-out;
+}
+.themes button:hover{
+    border-color: transparent;
+    background-color: green;
+
+}
+.settingsParentDiv{
+    background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('images/2.jpg');
+    margin: 0 auto;
+    width: 80%;
+}
+summary{
+    text-align: center;
+    font-weight: 800;
+    transition: .5s ease-in-out;
+    cursor: pointer;
+}
+summary:hover{
+    color:green;
+    user-select: none;
+}
+.settingOptionsBellowThemes{
+    display: flex;
+    flex-direction: column;
+    gap: 0 1px;
+}
+.imageAndBtn button{
+    background:transparent;
+    border: none;
+    cursor: pointer;
+}
+.settingOptionsBellowThemes img{
+    width: 20px;
+}
+.imageAndBtn{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.imageAndBtn, .setParaColor{
+    background: transparent;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 4px 14px;
+    margin: 8px auto;
+    border-radius: 12px;
+    box-shadow: 0px 0px 5px -1px white;
+}
+.setParaColor{
+    display: flex;
+ gap: 0 2px;
+    justify-content: center;
+    align-items: center;
+}
+.deleteAllNotes{
+    transition: .3s ease-in-out;
+    background: rgba(255, 0, 0, 0);
+border: 1px solid red;
+box-shadow:none;
+}
+.deleteAllNotes button{
+   color: red;
+}
+.deleteAllNotes:hover{
+   border-color: transparent;
+    background: red;
+    box-shadow:none;
+}
+.deleteAllNotes button:hover{
+    color: rgb(255, 255, 255);
+}
+.setParaColor input{
+margin: 0 auto;
+width: -webkit-fill-available;
+}
+.detainses{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.messageContainer{
+    text-align: center;
+    background:green;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 189px;
+    width: max-content;
+    padding: 12px 16px;
+    border-radius: 15px;
+    z-index: 99;
+
+}
+/* --------- */
+/* Dlete btn  */
+.deleteConfirm{
+    margin: 0 auto;
+    display: none;
+    margin-bottom: 15px;
+}
+.deleteConfirm h4{
+color: red;
+}
+.deleteConfirm .delBtn{
+    display: flex;
+    justify-content: center;
+    gap: 0 37px;
+}
+.deleteConfirm .delBtn button{
+    border: none;
+    padding: 2px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+#notDele{
+    background-color: red;
+}
+#dele{
+    background-color: green;
+}
+/* ------------------ */
+.displayNone{
+    display: none;
+}
+
+@keyframes slideInDelete {
+    0%{
+        transform: translateY(300%);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+@keyframes slideInThemes {
+    0%{
+        transform: translateY(-300%);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+
+
+
+
+
+
+@media(max-width:800px){
+    .mainContainer {
+        width: 100%;
+    }
+    #newNotes #textBox {
+        border-top: 1px solid;
+        border-bottom: 1px solid;
+    }
+    .newNotes {
+        width: 100%;
+        margin-top: 20px;
+    }}
+@media(max-width:700px){
+    .themesParen {
+        FLEX-DIRECTION: column;
+    }
+    .themes {
+        margin:5px 0;
+    }
+}

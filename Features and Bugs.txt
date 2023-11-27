@@ -1,0 +1,2 @@
+#Features
+1. keep live GIF walpaer in theme preview

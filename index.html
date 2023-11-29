@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apple Notes !</title>
+    <title>All Notes -- Where Informations Stay!</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,10 +23,11 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
  <link rel="stylesheet" href="style.css">
+ <link rel="shortcut icon" href="images/notes.png" type="image/x-icon">
 </head>
 <body>
     <div class="alert alert-dark text-center alert-dismissible fade show" role="alert">
-        Some features may not work as you expected. They are still under <strong style="color: green;">WIP</strong> state.
+        Some features may not work as you expected. They are still under <strong style="color: rgb(0, 113, 148);">WIP</strong> state.
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="color: rgb(255, 255, 255);"></button>
       </div>
     <div class="mainContainerChildrenNav">
@@ -65,21 +66,21 @@
 <div class="themesSetMessage messageContainer displayNone">
     <p>Theme set Successfully...</p>
 </div>
-<details class="detainses">
+<details class="detainses goToRight settingChildren">
   <summary>Themes Collection</summary>    
   <div class="themesParen">
    <div class="themes">
-    <img src="images/1.jpg" alt=""> 
+    <img src="images/themes1Preview.PNG" alt=""> 
     <button>Applied</button>
   </div>
 
    <div class="themes">
-    <img src="images/1.jpg" alt=""> 
+    <img src="images/themes2Preview.PNG" alt=""> 
     <button>Apply</button>
   </div>
 
    <div class="themes">
-    <img src="images/1.jpg" alt=""> 
+    <img src="images/themes3Preview.PNG" alt=""> 
     <button>Apply</button>
   </div>
 </div>
@@ -87,51 +88,90 @@
 <!-- Themes section ended  -->
 <div class="settingOptionsBellowThemes">
 
-    <div class="imageAndBtn">
+<!-- recycle-bin -->
+<div class="binContainer transform120">
+
+    <!-- <div class="divOfDeleted">
+        <div class="paraAndTitle">
+
+            <h1>hdfghdfh</h1>
+            <p>dftrhbdft</p>
+        </div>
+        
+        <div class="recycleAnddeletePerm">
+            <img src="images/cross.png" class="">
+            <img src="images/recycle-bin.png" class="">
+        </div>
+        
+        <div class="timeStamp">
+            <p class="timeDates">2023/11/28</p>
+        </div>
+    </div>
+ -->
+
+    <button class="displayNone">Delete All</button>
+<h4 class="binEmptyMessage">Trash is Empty!</h4>
+</div>
+
+    <div class="imageAndBtn goToRight settingChildren">
         <img src="images/downloading.png" alt="">
          <button>Download Notes As PDF</button>
         </div>
         
-    <div class="imageAndBtn">
+    <div class="imageAndBtn goToRight settingChildren">
         <img src="images/font.png" alt="">
          <button>Change Notes Font</button>
         </div>
 
-        <div class="imageAndBtn">
+        <div class="imageAndBtn goToRight settingChildren">
             <img src="images/select.png" alt="">
              <button>Any thing</button>
             </div>
 
-<div class="setParaColor">
-    <img src="images/colour.png" alt=""> 
-      <details class="detainses">
-     <summary>Paragraph Color</summary>    
-        <input type="color" name="" id="">
-      </details>
+        <div class="imageAndBtn goToRight settingChildren">
+            <img src="images/colour.png" alt="">
+             <button>Change Color</button>
+            </div>
 
-</div>
-      <div class="imageAndBtn">
+
+      <div class="imageAndBtn goToRight settingChildren">
               <img src="images/lock.png" alt="">
                <button>Set Notes Password</button>
               </div>
 
-<div class="deleteConfirm">
-    <h4>Are you sure to delete All notes?</h4>
-    <div class="delBtn">
-        <button id="dele">Yes</button>
-        <button id="notDele">No</button>
-    </div>
-</div>
 
-      <div class="imageAndBtn Default">
+
+
+      <div class="imageAndBtn Trash goToRight settingChildren">
+        <img src="images/recycle-bin.png" alt="">
+        <button>Trash Bin</button>
+        </div>
+
+      <div class="imageAndBtn Default goToRight settingChildren">
         <img src="images/work-in-progress.png" alt="">
          <button>Reset as Default</button>
         </div>
-      <div class="imageAndBtn deleteAllNotes">
+        <div class="defaultConfirm goToRight settingChildren">
+            <h4>Apply Deafult Settings?</h4>
+            <div class="deflBtn">
+                <button id="deflYes">Yes</button>
+                <button id="deflNo">No</button>
+            </div>
+        </div>
+
+      <div class="imageAndBtn deleteAllNotes goToRight settingChildren">
         <img src="images/bin.png" alt="">
          <button>Delete All Notes</button>
         </div>
 
+
+        <div class="deleteConfirm goToRight settingChildren">
+            <h4>Are you sure to delete all Notes?</h4>
+            <div class="delBtn">
+                <button id="dele">Yes</button>
+                <button id="notDele">No</button>
+            </div>
+        </div>
 </div>
 </div>
 

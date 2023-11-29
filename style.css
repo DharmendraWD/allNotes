@@ -35,9 +35,9 @@ body{
     height: 70vh;
     overflow: scroll;
 }
-.mainContainerChildren{
+.mainContainer .mainContainerChildren{
     margin: 1px 0px;
-    border-bottom: 1px solid #3a432a82;
+    border-bottom: 1px solid #c4c5c182;
     position: relative;
     height: 80px;
     width: 100%;
@@ -59,7 +59,7 @@ text-align: center;
 font-family: Grandstander;
 font-size: 21px;
 }
-.mainContainerChildren p{
+.mainContainer .mainContainerChildren p{
     pointer-events: none;
     margin: 0;
     padding: 0;
@@ -78,7 +78,7 @@ font-size: 21px;
     margin: 0 auto 0px auto;
     font-family: Grandstander;
 }
-.mainContainerChildren .timeDates{
+.mainContainer .mainContainerChildren .timeDates{
     position: absolute;
     bottom: 0;
     pointer-events: none;
@@ -96,7 +96,7 @@ font-size: 21px;
     text-align: center;
     width: 20%;
 }
-.mainContainerChildren h1{
+.mainContainer .mainContainerChildren h1{
     z-index: 0;
     pointer-events: none;
     margin: 9px auto 0 auto;
@@ -178,7 +178,7 @@ transform: translateX(-50%);
     overflow: hidden;
     position: absolute;
     right: 0px;
-    top: 82px;
+    top: 100px;
 }
 .option {
     flex: 1;
@@ -208,8 +208,9 @@ display: flex;
 .deleteNotes{
     width: 30px;
     position: absolute;
-    top: 15px;
     right: 12%;
+    top: 50%;
+    transform: translateY(-50%);
 }
 .alertTop{
     position: absolute;
@@ -240,6 +241,7 @@ display: flex;
     display: grid;
     grid-auto-flow: dense;
     grid-template-columns: 1fr 1fr 1fr;
+    gap: 0 7px;
 }
 .columnRevserse{
     flex-direction: column-reverse;
@@ -309,6 +311,7 @@ summary:hover{
     display: flex;
     flex-direction: column;
     gap: 0 1px;
+    position: relative;
 }
 .imageAndBtn button{
     background:transparent;
@@ -323,7 +326,7 @@ summary:hover{
     display: flex;
     justify-content: center;
 }
-.imageAndBtn, .setParaColor{
+.imageAndBtn, .setColor{
     background: transparent;
     width: fit-content;
     margin: 0 auto;
@@ -332,7 +335,7 @@ summary:hover{
     border-radius: 12px;
     box-shadow: 0px 0px 5px -1px white;
 }
-.setParaColor{
+.setColor{
     display: flex;
  gap: 0 2px;
     justify-content: center;
@@ -355,10 +358,6 @@ box-shadow:none;
 .deleteAllNotes button:hover{
     color: rgb(255, 255, 255);
 }
-.setParaColor input{
-margin: 0 auto;
-width: -webkit-fill-available;
-}
 .detainses{
     display: flex;
     justify-content: center;
@@ -379,36 +378,126 @@ width: -webkit-fill-available;
 }
 /* --------- */
 /* Dlete btn  */
-.deleteConfirm{
+.deleteConfirm, .defaultConfirm{
     margin: 0 auto;
     display: none;
     margin-bottom: 15px;
 }
-.deleteConfirm h4{
+.deleteConfirm h4, .defaultConfirm h4{
 color: red;
 }
-.deleteConfirm .delBtn{
+.deleteConfirm .delBtn, .defaultConfirm .deflBtn{
     display: flex;
     justify-content: center;
     gap: 0 37px;
 }
-.deleteConfirm .delBtn button{
+.deleteConfirm .delBtn button, .defaultConfirm .deflBtn button{
     border: none;
     padding: 2px 16px;
     border-radius: 20px;
     cursor: pointer;
 }
-#notDele{
+#notDele, #deflNo{
     background-color: red;
 }
-#dele{
+#dele, #deflYes{
     background-color: green;
 }
 /* ------------------ */
+/* alert above  */
+.alert-dark{
+    transform: translateY(0%);
+    transition: transform 0.3s;
+    position: absolute;
+    width: 100%;
+    z-index: 999999999999999999999999999999999999999999999999999999999999999999999999;
+}
 .displayNone{
     display: none;
 }
+.top0Left50{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.translateX{
+    transform: translateX(900%);
+    transition: transform 0.6s;
+}
 
+/* RecycleBin  */
+.binContainer{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgb(30 24 24 / 22%);
+    padding: 47px 0 0 0;
+    transition: 0.6s ease-in-out;
+}
+.transform120{
+    transform: translateX(-116%);
+}
+.transform0{
+    transform: translateX(0%);
+}
+.binContainer button {
+    background: red;
+    outline: 0;
+    border: 0;
+    position: absolute;
+    bottom: 2px;
+    transform: translateX(-50%);
+    left: 50%;
+    padding: 3px 13px;
+    border-radius: 12px;
+}/* 
+.binContainer .recycleAnddeletePerm {
+    position: absolute;
+    right: 12%;
+}
+.binContainer .timeStamp {
+    position: absolute;
+    right: 0%;
+}
+.divOfDeleted{
+    display: flex;
+    justify-content: center;
+    top: 12%;
+    position: relative;
+    align-items: center;
+    border: 1px solid;
+    line-height: .1;
+} */
+.binContainer .mainContainerChildren .deleteNotes{
+    cursor: pointer;
+}
+.binContainer .mainContainerChildren .deleteNotes{
+    /* display: none; */
+} 
+.binContainer .mainContainerChildren{
+    text-align: center;
+    border: 1px solid #636865a6;
+    position: relative;
+    line-height: .7;
+    margin: 2px 0 0 2px;
+}
+.binContainer .binEmptyMessage{
+    text-align: center;
+    padding-top: 86px;
+}
+.binContainer .mainContainerChildren img{
+width: 80px;
+transition: .3s ease-in-out;
+}
+.binContainer .mainContainerChildren img:hover{
+opacity: 70%;
+}
+.binContainer .timeDates{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
 @keyframes slideInDelete {
     0%{
         transform: translateY(300%);
@@ -425,6 +514,9 @@ color: red;
         transform: translateY(0);
     }
 }
+
+
+
 
 
 

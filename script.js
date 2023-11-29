@@ -18,7 +18,16 @@ let messageContainer = document.querySelector('.messageContainer');
 let deleteAllNotes = document.querySelector('.deleteAllNotes')
 let deleteConfirm = document.querySelector('.deleteConfirm')
 let delBtn = document.querySelector('.delBtn')
+let Default = document.querySelector('.Default')
+let defaultConfirm = document.querySelector('.defaultConfirm');
+
+let deflYes = document.querySelector('#deflYes');
+let settingOptionsBellowThemes = document.querySelector('.settingOptionsBellowThemes');
+let deflNo = document.querySelector('#deflNo');
+let binContainer = document.querySelector('.binContainer')
 let notes ='';
+let recoverIcon ='';
+
 
 // GETTING DATE FUNCTION HERE 
 function getCurrentDate(){
@@ -69,6 +78,7 @@ NotesContainer.setAttribute('class', 'mainContainerChildren');  //setting class 
 createdParaDates.setAttribute('class', 'timeDates');  //setting class on date
 createdDeleteIcon.setAttribute('class', 'deleteNotes');  //setting class on deleteIcon
 
+
 NotesContainer.append(createdTitle) //Appending Title
 NotesContainer.append(createdParaNotes) //Appending para
 NotesContainer.append(createdParaDates) //Appending Date
@@ -78,17 +88,25 @@ mainContainer.append(NotesContainer)    //Appending Div, which contains notes, t
 mainContainer.style.opacity="0" //Hiding all Notes while Submitting
 
 NotesContainer.addEventListener('click', (e)=>{
-     mainContainerChildren = document.querySelectorAll(".mainContainerChildren")
+     mainContainerChildren = document.querySelectorAll(".mainContainer .mainContainerChildren")
 
        for(let i=0; i<mainContainerChildren.length; i++){
       if(e.target.tagName==="DIV"){
-        mainContainerChildren[i].style.display="none" 
+        mainContainerChildren[i].style.display="none";
       }  
-       } 
-// If clicked item is div then 
-if(e.target.tagName==="DIV"){
+    } 
+    deleteAllNotes.classList.add('inButton')      
+    // If clicked item is div then 
+    if(e.target.tagName === "DIV" && e.target.closest('.mainContainer')){
+      mainContainer.style.gridTemplateColumns="1fr";
   e.target.style.display="block"
-  e.target.style.height="100vh" 
+  e.target.style.height="100vh"; 
+  
+  // Align delete icon on bottom after click on any specific note 
+  let deleteNotes = document.querySelectorAll('.deleteNotes')
+  deleteNotes.forEach((elem)=>{
+        elem.style.display="none";
+      })
 } 
 })
 
@@ -115,13 +133,16 @@ checkEmptyNess();
 // ------------
 function checkLengthForDelete(){
   if(mainContainer.children.length>1){
-    let mainContainerChildren = document.querySelectorAll(".mainContainerChildren"); //
+    let mainContainerChildren = document.querySelectorAll(".mainContainer .mainContainerChildren"); //
 
     mainContainerChildren.forEach(function(elem, ind){
       elem.addEventListener('click', function(e){
         if(e.target.tagName==="IMG"){
-     e.target.parentElement.remove()
-    }
+          // e.target.parentElement.remove();
+        binContainer.append(e.target.parentElement)
+        chckNtsInTrashAndChngIcn()
+       }
+
     //Function called to check if there is any notes or not after deleting notes 
 checkEmptyNess()
   })
@@ -134,16 +155,33 @@ checkLengthForDelete()
 
 // When Click on Back Button then
 leftRight.children[0].addEventListener('click', ()=>{
+  if(window.getComputedStyle(mainContainer).getPropertyValue('display')==='grid'){
+    mainContainer.style.gridTemplateColumns="1fr 1fr 1fr";
+  }
+   // Transform normal to all options of settings when click on back
+   let settingChildren = document.querySelectorAll('.settingChildren');
+   settingChildren.forEach((elem)=>{
+     elem.classList.remove('translateX');
+     elem.classList.remove('top0Left50');
+    })
+// Transform Trash DIv 
+settingOptionsBellowThemes.children[0].classList.add('transform120')
+
   secondHeading.innerHTML="Notes"
   mainContainer.classList.remove('displayNone');
   submitButton.classList.remove('displayNone');
   settingsParentDiv.classList.add('displayNone')
+  // Align deleteIcon in the middle when click on back 
+  let deleteNotes = document.querySelectorAll('.deleteNotes')
+  deleteNotes.forEach((elem)=>{
+    elem.style.display="block";
+  })
 
   mainContainer.style.opacity="1"
   mainContainer.style.pointerEvents="all"  //show all notes  
 newNotes.style.display="none";          //hiding Submit Notes Scetion
 submitButton.value="Add New" //
-let mainContainerChildren = document.querySelectorAll(".mainContainerChildren")
+let mainContainerChildren = document.querySelectorAll(".mainContainer .mainContainerChildren")
 mainContainerChildren.forEach(function(elem, index){
   elem.style.display="block"  //Making all added notes Shown
   elem.style.height="80px"    //Making all notes height 80px
@@ -176,7 +214,7 @@ checkEmptyNess();
     // Right Side Options //    //RIGHT SIDE OPTION     //RIGHT SIDDE OPTIONS //RIGHT SIDE OPTION
 // When clicked on Select as Gallary option 
 optionsContainer.children[1].addEventListener('click', ()=>{
-mainContainer.classList.toggle('toggleGrid')
+  mainContainer.classList.toggle('toggleGrid')
 })
 
 // When Click on rIGHT TO lEFT
@@ -194,33 +232,36 @@ optionsContainer.children[3].addEventListener('click', ()=>{
 })
 // THEMES sECTION 
 // themes 1
+function theme1(){
+  leftRight.children[0].src="images/back.png";
+  leftRight.children[2].src="images/more (2).png";
+  secondHeading.style.color="rgb(194, 139, 139)";
+  submitButton.style.backgroundColor="#59595996";
+  emptyAlert.style.color = "grey";
+  emptyAlert.style.backgroundColor = "transparent";
+ 
+  mainContainer.style.background = 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("images/writing-923882_1280.jpg")';
+  mainContainer.style.backgroundSize="cover";
+  mainContainer.style.backgroundPosition="center";
+  document.body.style.background = 'linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("images/1.jpg")';
+ 
+ // show message after applying theme 
+ messageContainer.textContent="Theme Applied Successfully."
+ messageContainer.style.display = 'block';
+ // After 2 seconds, hide the message
+ setTimeout(function () {
+     messageContainer.style.display = 'none';
+ }, 2000);
+   // -------------------------------------
+   // // Handelling Apply Button Text after click  
+   themesParen.children[0].children[1].textContent="Applied";
+   themesParen.children[1].children[1].textContent="Apply";
+   themesParen.children[2].children[1].textContent="Apply";
+}
 themesParen.children[0].children[1].addEventListener('click', ()=>{    //themes 1
- leftRight.children[0].src="images/back.png";
- leftRight.children[2].src="images/more (2).png";
- secondHeading.style.color="rgb(194, 139, 139)";
- submitButton.style.backgroundColor="#59595996";
- emptyAlert.style.color = "grey";
- emptyAlert.style.backgroundColor = "transparent";
-
- mainContainer.style.background = 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("images/writing-923882_1280.jpg")';
- mainContainer.style.backgroundSize="cover";
- mainContainer.style.backgroundPosition="center";
- document.body.style.background = 'linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("images/1.jpg")';
-
-// show message after applying theme 
-messageContainer.textContent="Theme Applied Successfully."
-messageContainer.style.display = 'block';
-// After 2 seconds, hide the message
-setTimeout(function () {
-    messageContainer.style.display = 'none';
-}, 2000);
-  // -------------------------------------
-  // // Handelling Apply Button Text after click  
-  themesParen.children[0].children[1].textContent="Applied";
-  themesParen.children[1].children[1].textContent="Apply";
-  themesParen.children[2].children[1].textContent="Apply";
-  // ------------------------------------
+  theme1()
 })
+// ------------------------------------
 
 // //themes 2 
 themesParen.children[1].children[1].addEventListener('click', ()=>{    //themes 1
@@ -276,7 +317,12 @@ setTimeout(function () {
 }, 2000);
  })
 
+// Deletes all notes
+// Message seeting for DeleteAllNotes
+
 document.querySelector('.deleteAllNotes').addEventListener('click', ()=>{
+  defaultConfirm.style.display="none";
+  Default.style.display="block";
   if(mainContainer.children.length>=2){
 deleteConfirm.style.display="block";
 deleteAllNotes.style.display="none";
@@ -289,9 +335,10 @@ else{
 })
 // Delete all notes if clicked on yes 
 delBtn.children[0].addEventListener('click', ()=>{
-  notes = document.querySelectorAll('.mainContainerChildren')
+  notes = document.querySelectorAll('.mainContainer .mainContainerChildren')
   deleteConfirm.style.display="none";
   deleteAllNotes.style.display="flex";
+  Default.style.display="block";
 if(notes.length>=1){
 notes.forEach((elem)=>{
   elem.remove()
@@ -318,12 +365,108 @@ setTimeout(function () {
 delBtn.children[1].addEventListener('click', ()=>{
   deleteConfirm.style.display="none";
   deleteAllNotes.style.display="flex";
+  Default.style.display="block";
 })
+// ----------------------------------------------------
+
+// When click on set default 
+Default.addEventListener('click', ()=>{
+  defaultConfirm.style.display="block";
+  Default.style.display="none";
+  deleteConfirm.style.display="none";
+  deleteAllNotes.style.display="block";
+
+  // When clicked on YEs in reset default 
+  deflYes.addEventListener('click', ()=>{
+    Default.style.display="block";
+    defaultConfirm.style.display="none";
+    // set default theme 
+    theme1();
+    // set default font 
+  })
+  // When clicked on no in reset default 
+  deflNo.addEventListener('click', ()=>{
+    Default.style.display="block";
+    defaultConfirm.style.display="none";
+  })
+
+})
+// --------------------------
+
+// when click on Trash button
+settingOptionsBellowThemes.children[6].children[1].addEventListener('click', ()=>{
+  // Bring "Trash" Button Above 
+  settingOptionsBellowThemes.children[6].classList.remove('goToRight');
+  settingOptionsBellowThemes.children[6].classList.toggle('top0Left50');
+  // As soon as clicked on "Trash" Button all options wiil be hidden in right side 
+  let goToRight = document.querySelectorAll('.goToRight');
+  goToRight.forEach((elem)=>{
+    elem.classList.toggle('translateX')
+  })
+  settingOptionsBellowThemes.children[0].classList.toggle('transform120')
+  checkBinEmptiness();
+})
+// -------------------
+
+// Recycle Bin 
+// FUnction to check if in recycle bin there is any notes or not if there is notes 
+// then show delete all button, if not then show message 
+function checkBinEmptiness(){
+  if ([...binContainer.children].some(child => child.classList.contains('mainContainerChildren'))){
+    binContainer.children[0].style.display="block";
+    binContainer.children[1].style.display="none";
+  }
+  else{
+    binContainer.children[0].style.display="none";
+    binContainer.children[1].style.display="block";
+  }
+}
+// function check if there are any deleted notes in trash or not 
+// if there then change the icon form delete to recover
+function chckNtsInTrashAndChngIcn(){ 
+  if(binContainer.children.length>=2){
+    let deleteNotes = document.querySelectorAll(".binContainer .mainContainerChildren .deleteNotes");
+    deleteNotes.forEach((deleteIcon)=>{
+      deleteIcon.src="images/recover.webp";
+    })
+  }
+}
+// If clicked on recover icon in recycle bin then 
+binContainer.addEventListener('click', function(event) {
+  // check if only clicked on recover image icon 
+  if(event.target.tagName==="IMG"){
+  // changing icon recover to delete when it goes in notes again
+  event.target.src="images/cross.png";
+  mainContainer.append(event.target.parentElement);
+  // show empty messge if no notes 
+  checkBinEmptiness()
+  checkEmptyNess();
+}
+});
+
+  
+  
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+// Hide homepage alert message after 5 secs 
+setTimeout(function () {
+  // document.querySelector('.alert-dark').style.display = 'none';
+  document.querySelector('.alert-dark').style.transform = 'translateY(-100%)';
+}, 7000);
 
 // When click on body of page anywhere then hide opened options
 document.addEventListener('click', (event)=>{

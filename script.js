@@ -17,14 +17,17 @@ let themesParen = document.querySelector('.themesParen');
 let messageContainer = document.querySelector('.messageContainer');     
 let deleteAllNotes = document.querySelector('.deleteAllNotes')
 let deleteConfirm = document.querySelector('.deleteConfirm')
-let delBtn = document.querySelector('.delBtn')
-let Default = document.querySelector('.Default')
+let goToRight = document.querySelectorAll('.goToRight');
+let delBtn = document.querySelector('.delBtn');
+let Default = document.querySelector('.Default');
 let defaultConfirm = document.querySelector('.defaultConfirm');
-
 let deflYes = document.querySelector('#deflYes');
 let settingOptionsBellowThemes = document.querySelector('.settingOptionsBellowThemes');
+let settingChildren = document.querySelectorAll('.settingChildren');
 let deflNo = document.querySelector('#deflNo');
-let binContainer = document.querySelector('.binContainer')
+let binContainer = document.querySelector('.binContainer');
+let changeFontColorChild = document.querySelector('.changeFontColorChild');
+let changeFont = document.querySelector('.changeFont');
 let notes ='';
 let recoverIcon ='';
 
@@ -43,9 +46,10 @@ return formattedDate;
 // When Click on submitButton 
 submitButton.addEventListener('click', ()=>{
   // If Notes are being shown then hide all previous notes and open to fill newNotes Section 
-    if(window.getComputedStyle(newNotes).getPropertyValue('display')==='none'){
+    if(newNotes.classList.contains('hrCenterTransform')){
         newNotes.style.display="flex"
         mainContainer.style.opacity="0"
+        newNotes.classList.remove('hrCenterTransform');
         mainContainer.style.pointerEvents="none" 
         submitButton.value="Save Note"
       }
@@ -63,6 +67,7 @@ else{   // And if Add New Notes Section is shown then append the written notes
     }
 mainContainer.style.opacity="0" //Hiding all Notes while Submitting
 let NotesContainer = document.createElement('div')
+let notePreview = document.createElement('p')
 let createdParaNotes = document.createElement('p')
 let createdTitle= document.createElement('h1')
 let createdParaDates = document.createElement('p')
@@ -73,12 +78,17 @@ createdParaNotes.innerHTML=textBox.value;
 createdTitle.innerHTML=title.value;
 createdParaDates.innerHTML=getCurrentDate();
 createdDeleteIcon.src="images/cross.png";
+notePreview.textContent="Click to See Notes";
 
+
+createdParaNotes.setAttribute('class', 'explainedPara');  //setting class on para
 NotesContainer.setAttribute('class', 'mainContainerChildren');  //setting class on para
 createdParaDates.setAttribute('class', 'timeDates');  //setting class on date
 createdDeleteIcon.setAttribute('class', 'deleteNotes');  //setting class on deleteIcon
+notePreview.setAttribute('class', 'notePreview');  //setting class on notePreview
 
 
+NotesContainer.append(notePreview) //Appending notePreview
 NotesContainer.append(createdTitle) //Appending Title
 NotesContainer.append(createdParaNotes) //Appending para
 NotesContainer.append(createdParaDates) //Appending Date
@@ -86,6 +96,8 @@ NotesContainer.append(createdDeleteIcon) //Appending deleteIcon
 
 mainContainer.append(NotesContainer)    //Appending Div, which contains notes, title, icon, date
 mainContainer.style.opacity="0" //Hiding all Notes while Submitting
+
+
 
 NotesContainer.addEventListener('click', (e)=>{
      mainContainerChildren = document.querySelectorAll(".mainContainer .mainContainerChildren")
@@ -98,11 +110,21 @@ NotesContainer.addEventListener('click', (e)=>{
     deleteAllNotes.classList.add('inButton')      
     // If clicked item is div then 
     if(e.target.tagName === "DIV" && e.target.closest('.mainContainer')){
+      // Show all paragrraph  
+      let explainedPara= document.querySelectorAll('.explainedPara');
+      explainedPara.forEach(function(elem){
+        elem.style.opacity=1;
+      })
+      // HIde Note preview 
+      let notePreview = document.querySelectorAll('.notePreview');
+      notePreview.forEach(function(elem){
+        elem.style.opacity="0";
+        elem.style.pointerEvents="none";
+      })
       mainContainer.style.gridTemplateColumns="1fr";
   e.target.style.display="block"
-  e.target.style.height="100vh"; 
-  
-  // Align delete icon on bottom after click on any specific note 
+  e.target.style.height="100vh";
+  // rempve delete icon on bottom after click on any specific note 
   let deleteNotes = document.querySelectorAll('.deleteNotes')
   deleteNotes.forEach((elem)=>{
         elem.style.display="none";
@@ -132,7 +154,7 @@ checkEmptyNess();
 // DELETE NOTES FUNCTION HERE
 // ------------
 function checkLengthForDelete(){
-  if(mainContainer.children.length>1){
+  if(mainContainer.children.length>2){
     let mainContainerChildren = document.querySelectorAll(".mainContainer .mainContainerChildren"); //
 
     mainContainerChildren.forEach(function(elem, ind){
@@ -149,45 +171,66 @@ checkEmptyNess()
     })
   }
 }
+checkLengthForDelete();
 // -----------------------------
-checkLengthForDelete()
 })
-
+console.log(mainContainer.children.length);
 // When Click on Back Button then
 leftRight.children[0].addEventListener('click', ()=>{
   if(window.getComputedStyle(mainContainer).getPropertyValue('display')==='grid'){
     mainContainer.style.gridTemplateColumns="1fr 1fr 1fr";
   }
-   // Transform normal to all options of settings when click on back
-   let settingChildren = document.querySelectorAll('.settingChildren');
-   settingChildren.forEach((elem)=>{
-     elem.classList.remove('translateX');
-     elem.classList.remove('top0Left50');
-    })
-// Transform Trash DIv 
-settingOptionsBellowThemes.children[0].classList.add('transform120')
+// Hide all paragraph in front page 
+  let explainedPara = document.querySelectorAll(".explainedPara");
+explainedPara.forEach(function(elem){
+  elem.style.opacity='0';
+})
+      // Show para Note preview 
+      let notePreview = document.querySelectorAll('.notePreview');
+      notePreview.forEach(function(elem){
+        elem.style.opacity="1";
+      })
+newNotes.classList.add('hrCenterTransform');
+  secondHeading.innerHTML="Notes";
+  // If binContainer is shown then hide hide instanceof. if colorPanel is shown then hide it
+  if(!binContainer.classList.contains('translateY-200') || !changeFontColorChild.parentElement.classList.contains('translateY-200') || !changeFont.classList.contains('translateY-244')){
+  //Hide bin container
+  binContainer.classList.add('translateY-200');
+  // HIde color panel
+  changeFontColorChild.parentElement.classList.add('translateY-200');
+// Hide change font container 
+changeFont.classList.add('translateY-244');
 
-  secondHeading.innerHTML="Notes"
-  mainContainer.classList.remove('displayNone');
-  submitButton.classList.remove('displayNone');
-  settingsParentDiv.classList.add('displayNone')
-  // Align deleteIcon in the middle when click on back 
-  let deleteNotes = document.querySelectorAll('.deleteNotes')
-  deleteNotes.forEach((elem)=>{
-    elem.style.display="block";
+//all options wiil be VISIBLE of settings 
+  goToRight.forEach((elem)=>{
+    elem.classList.remove('translateX')
   })
+}
+else{
+  // Hide Settings options if no more back 
+  settingsParentDiv.classList.add("translateY-244");
+  settingsParentDiv.classList.remove("transform0");
 
+  // Show Added Notes
   mainContainer.style.opacity="1"
   mainContainer.style.pointerEvents="all"  //show all notes  
-newNotes.style.display="none";          //hiding Submit Notes Scetion
-submitButton.value="Add New" //
-let mainContainerChildren = document.querySelectorAll(".mainContainer .mainContainerChildren")
+  submitButton.value="Add New" //
+
+// Making maincontainer shown 
+mainContainer.classList.remove('displayNone');
+// Show back button 
+submitButton.classList.remove('displayNone');
+  // Making all notes 80Px height
+  let mainContainerChildren = document.querySelectorAll(".mainContainer .mainContainerChildren")
 mainContainerChildren.forEach(function(elem, index){
   elem.style.display="block"  //Making all added notes Shown
   elem.style.height="80px"    //Making all notes height 80px
-
-  // remove displaynone after click on back from settings
 })
+let deleteNotes = document.querySelectorAll('.deleteNotes')
+  deleteNotes.forEach((elem)=>{
+    elem.style.display="block";
+  })
+}
 })
 
 // When click on RIght more option 
@@ -224,10 +267,14 @@ mainContainer.classList.toggle('columnRevserse')
 
 // WHEN CLICK ON SETTINGS 
 optionsContainer.children[3].addEventListener('click', ()=>{
+  // Setting options appear when click on settings 
+  settingsParentDiv.classList.remove("translateY-244");
+  settingsParentDiv.classList.add("transform0");
+
   submitButton.classList.add('displayNone');
   mainContainer.classList.add('displayNone');
   newNotes.style.display="none"
-  settingsParentDiv.classList.remove('displayNone')
+
   secondHeading.innerHTML="Notes/Settings" 
 })
 // THEMES sECTION 
@@ -395,15 +442,13 @@ Default.addEventListener('click', ()=>{
 
 // when click on Trash button
 settingOptionsBellowThemes.children[6].children[1].addEventListener('click', ()=>{
-  // Bring "Trash" Button Above 
-  settingOptionsBellowThemes.children[6].classList.remove('goToRight');
-  settingOptionsBellowThemes.children[6].classList.toggle('top0Left50');
+
   // As soon as clicked on "Trash" Button all options wiil be hidden in right side 
-  let goToRight = document.querySelectorAll('.goToRight');
   goToRight.forEach((elem)=>{
-    elem.classList.toggle('translateX')
+    elem.classList.add('translateX')
   })
   settingOptionsBellowThemes.children[0].classList.toggle('transform120')
+  binContainer.classList.remove('translateY-200');
   checkBinEmptiness();
 })
 // -------------------
@@ -444,16 +489,89 @@ binContainer.addEventListener('click', function(event) {
 }
 });
 
+// Delete all notes if clicked on "Delete all" In recycle Bin
+binContainer.children[0].addEventListener("click", ()=>{
+let notes = document.querySelectorAll(".binContainer .mainContainerChildren");
+ notes.forEach((deletableElem)=>{
+  deletableElem.remove();
+ })
+   // show empty messge if no notes in recycleBin
+   checkBinEmptiness()
+})
+// -------------------------------------------------------------------
+// }
   
+// When click on "Chnge Color" then bring change color section 
+settingOptionsBellowThemes.children[4].children[1].addEventListener('click', ()=>{
+changeFontColorChild.parentElement.classList.remove('translateY-200');
+})
+
+// When click on any particular color input box then change the color  
+changeFontColorChild.addEventListener('input', (element)=>{
+if(element.target.tagName==='INPUT'){
+
+if(element.target.id=="upperHeading"){
+optionsContainer.parentNode.children[0].style.color=element.target.value;
+}
+else if(element.target.id=="noteHeading"){
+  let mainContainerChildrenH4 = document.querySelectorAll('.mainContainerChildren h1');
+ mainContainerChildrenH4.forEach((elem)=>{
+  elem.style.color=element.target.value;
+ })
+}
+else if(element.target.id=="paraGraph"){
+  let explainedPara = document.querySelectorAll('.mainContainerChildren .explainedPara');
+  explainedPara.forEach((elem)=>{
+  elem.style.color=element.target.value;
+ })
+}
+else if(element.target.id=="secHeading"){
+    secondHeading.style.color=element.target.value;
+}
+else if(element.target.id=="newNoteAdd"){
+  submitButton.style.color=element.target.value;
+}
+else if(element.target.id=="settingsOpt"){
+  let settingsOpt = document.querySelectorAll('.settingChildren button');
+  // submitButton.style.color=element.target.value;
+settingsOpt.forEach((elem)=>{
+  elem.style.color="element.target.value";
+})
+}
+}
+})
+
+
+// When click on change font then bring font changer option 
+settingOptionsBellowThemes.children[2].children[1].addEventListener('click', ()=>{
+  changeFont.classList.remove('translateY-244');
+  // changeFont.classList.add('transform0');
+  })
   
+// When click on Note setting font change | first
+// changeFont.children[0].children[0].addEventListener('click')
+changeFont.addEventListener('click', (event)=>{
+  // If clicked on Note setting font 
+  if(event.target.id=="f0"){
+    changeFont.children[0].children[1].classList.toggle('noHeight');
+
+// Changing App setting font 
+    changeFont.children[0].children[1].addEventListener('change',function(){
+      var selectedFOnt = this.value;
+  optionsContainer.parentNode.children[0].style.fontFamily=selectedFOnt;    //upper heading
+  secondHeading.style.fontFamily=selectedFOnt;    //sewcond heading
+  settingsParentDiv.style.fontFamily=selectedFOnt;  //inside settings' options
+  emptyAlert.style.fontFamily=selectedFOnt;     //empty message alert
+  submitButton.style.fontFamily=selectedFOnt;   //submit btn
+  optionsContainer.style.fontFamily=selectedFOnt;   //main page rigth side option box
+  textBox.style.fontFamily=selectedFOnt;   //new notes section Para Box
+  title.style.fontFamily=selectedFOnt;   //new notes section title
+    })
+  }
+})
 
 
-
-
-
-
-
-
+console.log(changeFont.children[0].children[1]);
 
 
 
@@ -464,7 +582,6 @@ binContainer.addEventListener('click', function(event) {
 
 // Hide homepage alert message after 5 secs 
 setTimeout(function () {
-  // document.querySelector('.alert-dark').style.display = 'none';
   document.querySelector('.alert-dark').style.transform = 'translateY(-100%)';
 }, 7000);
 

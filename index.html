@@ -1,3 +1,4 @@
+<!-- Made with deep love by Dharmendra Sharma  -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,8 +35,8 @@
         <h1>All Notes</h1>
         <div id="optionsContainer">
             <div class="option"> <img src="images/select.png" alt=""> Select Notes</div>
-            <div class="option"> <img src="images/gallary (1).png" alt=""> View As Gallary</div>
-            <div class="option"> <img src="images/sync.png" alt=""> Rigth to Left</div>
+            <div class="option"> <img src="images/gallary (1).png" alt=""> Change Stack</div>
+            <div class="option"> <img src="images/sync.png" alt=""> View Down to Top</div>
             <div class="option"> <img src="images/setting.png" alt=""> Settings</div>
     </div>
         <div class="leftRight">
@@ -52,14 +53,14 @@
 
     <!-- Interface to add New Notes  -->
 </div>
-<div class="newNotes">
+<div class="newNotes hrCenterTransform">
     <input type="text" id="title" placeholder="Title Here">
 
     <textarea name="" id="textBox" cols="30" rows="10" placeholder="Explanation Here ..."></textarea>
 <h3 class="alert alertTop">Notes added Successfullly!</h3>
 </div>
 
-<div class="settingsParentDiv displayNone">
+<div class="settingsParentDiv translateY-244">
     <h2 style="text-align: center;" id="themeHeadiunf">Themes & More</h2>
 
 <!-- Themeses Section  -->
@@ -89,7 +90,7 @@
 <div class="settingOptionsBellowThemes">
 
 <!-- recycle-bin -->
-<div class="binContainer transform120">
+<div class="binContainer translateY-200">
 
     <!-- <div class="divOfDeleted">
         <div class="paraAndTitle">
@@ -145,6 +146,59 @@
       <div class="imageAndBtn Trash goToRight settingChildren">
         <img src="images/recycle-bin.png" alt="">
         <button>Trash Bin</button>
+        </div>
+
+        <div class="changeFontColor translateY-200">
+            <h3>Change Font color of following.</h3>
+            <div class="changeFontColorChild">
+                <div class="changeFontColorChildChildren">
+                    <h5>Note Heading</h5>
+                    <input type="color" name="" id="noteHeading">
+                </div>
+                <div class="changeFontColorChildChildren">
+                    <h5>Paragraph</h5>
+                    <input type="color" name="" id="paraGraph">
+                </div>
+                <div class="changeFontColorChildChildren">
+                    <h5>Upper Heading</h5>
+                    <input type="color" name="" id="upperHeading">
+                </div>
+                <div class="changeFontColorChildChildren">
+                    <h5>Second Heading</h5>
+                    <input type="color" name="" id="secHeading">
+                </div>
+                <div class="changeFontColorChildChildren">
+                    <h5>New Note Button</h5>
+                    <input type="color" name="" id="newNoteAdd">
+                </div>
+                <div class="changeFontColorChildChildren">
+                    <h5>Settings' Options</h5>
+                    <input type="color" name="" id="settingsOpt">
+                </div>
+            </div>
+        </div>
+
+        <!-- Change font  -->
+        <div class="changeFont translateY-244">
+            <div class="noteSettings">
+                <h3 id="f0">App Fonts</h3>
+                <select class="fontSelector fontSelector0 noHeight">
+                    <option value="Arial, sans-serif">Arial</option>
+                    <option value="Times New Roman, serif">Times New Roman</option>
+                    <option value="Courier New, monospace">Courier New</option>
+                    <option value="cursive">Cursive</option>
+                    <option value="Verdana, sans-serif">Verdana</option>
+                </select>
+            </div>
+            <!-- <div class="noteSettings">
+                <h3>App Fonts</h3>
+                <select class="fontSelector noHeight">
+                    <option value="Arial, sans-serif">Arial</option>
+                    <option value="Arial, sans-serif">Arial</option>
+                    <option value="Arial, sans-serif">Arial</option>
+                </select>
+            </div> -->
+            
         </div>
 
       <div class="imageAndBtn Default goToRight settingChildren">

@@ -43,6 +43,12 @@ body{
     width: 100%;
     cursor: pointer;
     z-index: 9999;
+    transition: .7s ease-in-out;
+    overflow: hidden;
+}
+.mainContainer .mainContainerChildren:hover{
+    border-bottom: 1.3px solid #d0d2d982;
+    background: #00000042;
 }
 .mainContainerChildrenNav{
     margin: 7px;
@@ -83,10 +89,10 @@ font-size: 21px;
     bottom: 0;
     pointer-events: none;
     right: 0;
-    font-size: 12px;
+    font-size: 13px;
     box-shadow: -1px -2px 10px -7px white;
     background: transparent;
-    color: #5f5c5c;
+    color: #898181;
 }
 #searchNotes{
     background: transparent;
@@ -102,6 +108,7 @@ font-size: 21px;
     margin: 9px auto 0 auto;
     padding: 0;
     text-align: center;
+    color: #b8bfee;
     font-family: Delius;
 }
 .leftRight{
@@ -114,7 +121,16 @@ font-size: 21px;
   cursor: pointer;
 
 }
-
+/* NoteView */
+.notePreview{
+    font-family: Annie Use Your Telescope;
+    font-size: 16px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #808285;
+}
 #newBtn{
     cursor: pointer;
     width: 90px;
@@ -129,6 +145,7 @@ font-size: 21px;
     margin: 12px 0 15px 0;
     font-size: 16px;
     transition: .2s ease-in-out;
+    bottom: 0;
 }
 #newBtn:hover{
     background: #33323296;
@@ -142,8 +159,9 @@ width: 80%;
 margin: 0 auto;
 position: absolute;
 top: 141px;
+transition: .7s ease-in-out;
 left: 50%;
-transform: translateX(-50%);
+transform: translateY(0%) translateX(-50%)
 }
 .newNotes #title{
     margin: 0 0 0px 0;
@@ -296,6 +314,8 @@ cursor: pointer;
     background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('images/2.jpg');
     margin: 0 auto;
     width: 80%;
+    transform: translateY(-95%);
+    transition: .5s ease-in-out;
 }
 summary{
     text-align: center;
@@ -341,6 +361,9 @@ summary:hover{
     justify-content: center;
     align-items: center;
 }
+.hrCenterTransform{
+    transform: translateY(-145%) translateX(-50%)
+}
 .deleteAllNotes{
     transition: .3s ease-in-out;
     background: rgba(255, 0, 0, 0);
@@ -374,6 +397,7 @@ box-shadow:none;
     padding: 12px 16px;
     border-radius: 15px;
     z-index: 99;
+    transition: .4s ease-in-out;
 
 }
 /* --------- */
@@ -432,14 +456,13 @@ color: red;
     height: 100%;
     width: 100%;
     background: rgb(30 24 24 / 22%);
-    padding: 47px 0 0 0;
     transition: 0.6s ease-in-out;
-}
-.transform120{
-    transform: translateX(-116%);
 }
 .transform0{
     transform: translateX(0%);
+}
+.transformY0{
+    transform: translateY(0%);
 }
 .binContainer button {
     background: red;
@@ -451,24 +474,7 @@ color: red;
     left: 50%;
     padding: 3px 13px;
     border-radius: 12px;
-}/* 
-.binContainer .recycleAnddeletePerm {
-    position: absolute;
-    right: 12%;
 }
-.binContainer .timeStamp {
-    position: absolute;
-    right: 0%;
-}
-.divOfDeleted{
-    display: flex;
-    justify-content: center;
-    top: 12%;
-    position: relative;
-    align-items: center;
-    border: 1px solid;
-    line-height: .1;
-} */
 .binContainer .mainContainerChildren .deleteNotes{
     cursor: pointer;
 }
@@ -498,6 +504,69 @@ opacity: 70%;
     right: 0;
     bottom: 0;
 }
+/* -------------------------------- */
+
+/* CHANGE FONT COLOR  */
+.changeFontColor{
+    position: absolute;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+text-align: center;
+line-height: 0;
+width: 100%;
+background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('images/vintage-2168174_1920.jpg');
+background-size: contain;
+    background-position: center;
+    transition: .5s ease-in-out;
+}
+.translateY-200{
+    transform: translateY(-200%);
+}
+.translateY-244{
+    transform: translateY(-244%);
+}
+.translateY-231{
+    transform: translateY(-231%);
+}
+.changeFontColor .changeFontColorChildChildren input{
+    height: 17px;
+    width: 15%;
+background-color: transparent;
+    border-radius: 9px;
+    border: none;
+}
+/* --------------------------------------------------- */
+/* Chnage font style  */
+.changeFont{
+    position: absolute;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+text-align: center;
+line-height: 0;
+width: 100%;
+background:linear-gradient(rgba(158, 72, 72, 0.7), rgba(0, 0, 0, 0.9)), url('images/vintage-2168174_1920.jpg');
+background-size: contain;
+    background-position: center;
+    transition: .5s ease-in-out;
+}
+
+.fontSelector{
+    background-color: rgb(133, 133, 133);
+    transition: 1s ease-in-out;
+}
+.noHeight{
+    height: 0px;
+    border: none;
+}
+
+
+
+
+
 @keyframes slideInDelete {
     0%{
         transform: translateY(300%);

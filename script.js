@@ -1,4 +1,9 @@
+// THIS WEB APP IS IN WORKING PROCESS AND SOME OF THE FEATURES MIGHT NOT BE
+// WORKING AND YOU MAY GET EXPERIENCE UNEXPECTED 
+// date of initiated : 1st Nov 2023
 document.addEventListener('DOMContentLoaded', function() {
+
+
 window.addEventListener('load', function(){
 let submitButton = document.getElementById('newBtn');   //submitBTN
 let textBox = document.getElementById('textBox');       //Paragraph
@@ -28,6 +33,7 @@ let deflNo = document.querySelector('#deflNo');
 let binContainer = document.querySelector('.binContainer');
 let changeFontColorChild = document.querySelector('.changeFontColorChild');
 let changeFont = document.querySelector('.changeFont');
+let lockNotesParentDiv = document.querySelector('.lockNotesParentDiv');
 let notes ='';
 let recoverIcon ='';
 
@@ -154,13 +160,12 @@ checkEmptyNess();
 // DELETE NOTES FUNCTION HERE
 // ------------
 function checkLengthForDelete(){
-  if(mainContainer.children.length>2){
+  if(mainContainer.children.length>1){
     let mainContainerChildren = document.querySelectorAll(".mainContainer .mainContainerChildren"); //
 
     mainContainerChildren.forEach(function(elem, ind){
       elem.addEventListener('click', function(e){
         if(e.target.tagName==="IMG"){
-          // e.target.parentElement.remove();
         binContainer.append(e.target.parentElement)
         chckNtsInTrashAndChngIcn()
        }
@@ -174,7 +179,6 @@ checkEmptyNess()
 checkLengthForDelete();
 // -----------------------------
 })
-console.log(mainContainer.children.length);
 // When Click on Back Button then
 leftRight.children[0].addEventListener('click', ()=>{
   if(window.getComputedStyle(mainContainer).getPropertyValue('display')==='grid'){
@@ -185,21 +189,26 @@ leftRight.children[0].addEventListener('click', ()=>{
 explainedPara.forEach(function(elem){
   elem.style.opacity='0';
 })
+
       // Show para Note preview 
       let notePreview = document.querySelectorAll('.notePreview');
       notePreview.forEach(function(elem){
         elem.style.opacity="1";
       })
 newNotes.classList.add('hrCenterTransform');
-  secondHeading.innerHTML="Notes";
   // If binContainer is shown then hide hide instanceof. if colorPanel is shown then hide it
-  if(!binContainer.classList.contains('translateY-200') || !changeFontColorChild.parentElement.classList.contains('translateY-200') || !changeFont.classList.contains('translateY-244')){
+  if(!binContainer.classList.contains('translateY-200') || !changeFontColorChild.parentElement.classList.contains('translateY-200') || !changeFont.classList.contains('translateY-244') || !lockNotesParentDiv.classList.contains('translateY-200')){
   //Hide bin container
   binContainer.classList.add('translateY-200');
   // HIde color panel
   changeFontColorChild.parentElement.classList.add('translateY-200');
 // Hide change font container 
 changeFont.classList.add('translateY-244');
+// Hide "set lock password" interface 
+lockNotesParentDiv.classList.add('translateY-200');
+
+// Hide Password setting warning 
+lockNotesParentDiv.children[3].classList.add('translateY-704')
 
 //all options wiil be VISIBLE of settings 
   goToRight.forEach((elem)=>{
@@ -211,6 +220,7 @@ else{
   settingsParentDiv.classList.add("translateY-244");
   settingsParentDiv.classList.remove("transform0");
 
+  secondHeading.innerHTML="Notes";
   // Show Added Notes
   mainContainer.style.opacity="1"
   mainContainer.style.pointerEvents="all"  //show all notes  
@@ -568,12 +578,72 @@ changeFont.addEventListener('click', (event)=>{
   title.style.fontFamily=selectedFOnt;   //new notes section title
     })
   }
+  if(event.target.id=="f1"){
+    changeFont.children[1].children[1].classList.toggle('noHeight');
+
+// Changing Notes heading Font
+    changeFont.children[1].children[1].addEventListener('change',function(){
+      var selectedFOnt = this.value;
+      // Heading 
+      let mainContainerChildrenH4 = document.querySelectorAll('.mainContainerChildren h1');
+      mainContainerChildrenH4.forEach((elem)=>{
+       elem.style.fontFamily=selectedFOnt;
+      })
+    })
+  }
+  if(event.target.id=="f2"){
+    changeFont.children[2].children[1].classList.toggle('noHeight');
+
+// Changing Notes heading Font
+    changeFont.children[2].children[1].addEventListener('change',function(){
+      var selectedFOnt = this.value;
+      // Paragraph 
+      let explainedPara = document.querySelectorAll('.mainContainerChildren .explainedPara');
+      explainedPara.forEach((elem)=>{
+      elem.style.fontFamily=selectedFOnt;
+      console.log('s;k');
+      
+     })
+    })
+  }
 })
 
+// Lock Notes 
+// When click on any lock numbers and the remove number button 'X'
+let clickedNum= ''; //to get clicked password number 
+lockNotesParentDiv.children[1].addEventListener('click',function(elem){
+// to make sure clicked on number only 
+ if(elem.target.tagName==='H3'){
+  clickedNum += elem.target.textContent;
+  lockNotesParentDiv.children[0].textContent=clickedNum;
+ }
+ else if(elem.target.tagName==='H2'){
+ let trimedClickedNum=  clickedNum.slice(0, -1);
+ clickedNum = trimedClickedNum;
+ lockNotesParentDiv.children[0].textContent=trimedClickedNum;
+ 
+// Hide Password setting warning 
+lockNotesParentDiv.children[3].classList.add('translateY-704')
+ }
+})
 
-console.log(changeFont.children[0].children[1]);
+// When Click on 'proceed' to set lock 
+lockNotesParentDiv.children[2].children[0].addEventListener('click', function(){
+  lockNotesParentDiv.children[3].classList.remove('translateY-704')
+//  If there is no password written and user clicked on "proceed"
+if(clickedNum.length==0){
+  console.log('write the password first');
+}
+if(clickedNum.length<=3){
+  console.log('please write more than 3 digit');
+}
+console.log(lockNotesParentDiv.children[3]);
+})
 
-
+// When click on "set password" in settings 
+settingOptionsBellowThemes.children[5].children[1].addEventListener('click', function(){
+  lockNotesParentDiv.classList.remove('translateY-200');
+})
 
 
 

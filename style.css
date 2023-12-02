@@ -522,13 +522,16 @@ background-size: contain;
     transition: .5s ease-in-out;
 }
 .translateY-200{
-    transform: translateY(-200%);
+    transform: translateY(-700%);
 }
 .translateY-244{
-    transform: translateY(-244%);
+    transform: translateY(-544%);
+}
+.translateY-704{
+    transform: translateY(-750%);
 }
 .translateY-231{
-    transform: translateY(-231%);
+    transform: translateY(-631%);
 }
 .changeFontColor .changeFontColorChildChildren input{
     height: 17px;
@@ -555,18 +558,117 @@ background-size: contain;
 }
 
 .fontSelector{
-    background-color: rgb(133, 133, 133);
+        background-color: rgba(44, 43, 43, 0.03);
     transition: 1s ease-in-out;
+        color: #97a1a1; 
+        border-radius: 10px;
+        text-align: center;
+        font-weight: 700;
+}
+option{
+    background-color: rgb(53, 50, 50);
 }
 .noHeight{
     height: 0px;
     border: none;
 }
-
-
-
-
-
+/* Lock Notes  */
+.lockNotesParentDiv{
+    height: 100%;
+    width: 100%;
+    background:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('images/vintage-2168174_1920.jpg');
+backdrop-filter: blur(8px); /* Adjust the blur amount as needed */
+background-color: rgba(255, 255, 255, 0.5); /* Adjust the background color and opacity as needed */
+    height: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    transition: .5s ease-in-out;
+}
+.lock{
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    min-width: 40%;
+}
+.lock h3{
+        text-align: center;
+        margin: 2px;
+        padding: 13px 23px;
+        box-shadow: 0px 1px 5px 1px black;
+        border-radius: 52%;
+        cursor: pointer;
+        transition: .3s ease-in-out;
+}
+.lock h2{
+    margin: 2px;
+    padding: 11px 21px;
+    box-shadow: 0px 1px 5px 1px black;
+    border-radius: 52%;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+    background: repeating-radial-gradient(#f9131336, #ff000029 100px);
+    color: red;
+}
+.lock h2:hover{
+    background: repeating-radial-gradient(#f91313bf, #120606 100px);
+    color: white;
+}
+.lock h3:hover{
+        box-shadow: 0px 2px 5px 3px black;
+        color: #9c9c9a;
+}
+.inPutBox{
+    padding-bottom: 19px;
+    padding-top: 11px;
+}
+.inPutBox input{
+    background: transparent;
+    border: 1px solid wheat;
+    color: red;
+    font-size: 27px;
+    text-align: center;
+    border: none;
+    border-bottom: 3px solid #ffe6e640;
+    cursor: not-allowed; 
+    pointer-events: none; 
+}
+.passwordSet{
+    padding-top: 20px;
+    margin-bottom: 8px;
+}
+.passwordSet button{
+    padding-top: 22px;
+    background: #056d0852;
+    padding: 9px 38px;
+    outline: none;
+    border-radius: 22px;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px 1px rgb(255, 255, 255);
+    transition: .2s ease-in-out;
+    border: none;
+    font-size: 17px;
+}
+.passwordSet button:hover{
+    padding: 9px 42px;
+    box-shadow: 0px 0px 5px 1px green;
+    background: #008f04c4;
+}
+.warnings{
+    position: absolute;
+    top: 29%;
+    background: #3f4d4d;
+    padding: 16px 33px;
+    border-radius: 12px;
+}
+.warnings h2{
+    text-align: center;
+    font-size: 21px;
+}
 @keyframes slideInDelete {
     0%{
         transform: translateY(300%);
